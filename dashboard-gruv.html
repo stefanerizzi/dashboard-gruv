@@ -254,30 +254,21 @@
     z-index:0;
   }
 
-  .decor-img{
+  .card-texture{
     position:absolute;
+    inset:0;
+    background-color:rgba(255,255,255,0.04);
+    background-image:url("textura-fundo.jpg");
+    background-size:cover;
+    background-position:center;
+    background-blend-mode:overlay;
+    opacity:0.05;
     pointer-events:none;
     user-select:none;
     z-index:0;
   }
 
-  .decor-strip{
-    position:absolute;
-    top:0;
-    bottom:0;
-    overflow:hidden;
-    pointer-events:none;
-    user-select:none;
-    z-index:0;
-  }
-  .decor-strip img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-
-  .card > *:not(.card-glass):not(.decor-img):not(.decor-strip){ position:relative; z-index:1; }
+  .card > *:not(.card-glass):not(.card-texture){ position:relative; z-index:1; }
 
   /* ---------- EDITABLE FIELDS ---------- */
 
@@ -701,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div>
         <div class="section-title">Cadência de prospecção</div>
         <div class="card panel">
-          <img class="decor-img" src="GRUV221.png" alt="" aria-hidden="true" style="right:0; bottom:0; width:180px; opacity:0.07; object-fit:cover;">
+          <div class="card-texture"></div>
           <div class="bar-row" data-group="cadencia">
             <div class="bar-label">Email 1</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
@@ -733,6 +724,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div>
         <div class="section-title">Funil de negociações · RD Station</div>
         <div class="card panel funnel">
+          <div class="card-texture"></div>
           <div class="bar-row" data-group="funil">
             <div class="bar-label">Contato Iniciado</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
@@ -772,8 +764,7 @@ document.addEventListener('DOMContentLoaded', function(){
   <section class="section-block">
     <div class="section-title">Negociações em destaque</div>
     <div class="card deals-wrap">
-      <div class="card-glass"></div>
-      <img class="decor-img" src="elemento%202.png" alt="" aria-hidden="true" style="right:-30px; bottom:-30px; width:160px; opacity:0.10;">
+      <div class="card-texture"></div>
       <table class="deals">
         <thead>
           <tr>
@@ -831,7 +822,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div>
         <div class="section-title">Meta Ads</div>
         <div class="card stat-grid">
-          <div class="decor-strip" aria-hidden="true" style="right:0; width:200px; opacity:0.06;"><img src="GRUV223.png" alt=""></div>
+          <div class="card-texture"></div>
           <div class="stat">
             <div class="stat-label">Leads gerados</div>
             <div class="stat-value" data-key="meta-leads" contenteditable="true">142</div>
@@ -854,6 +845,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div>
         <div class="section-title">Nutrição · RD Station</div>
         <div class="card stat-grid">
+          <div class="card-texture"></div>
           <div class="stat">
             <div class="stat-label">Taxa de abertura</div>
             <div class="stat-value" data-key="nut-abertura" contenteditable="true">18%</div>
@@ -876,13 +868,12 @@ document.addEventListener('DOMContentLoaded', function(){
   </section>
 
   <!-- Próximas ações -->
-  <section class="section-block" style="margin-bottom:16px; position:relative; overflow:hidden;">
-    <div class="decor-strip" aria-hidden="true" style="right:0; width:260px; opacity:0.08;"><img src="GRUV224.png" alt=""></div>
-    <div style="position:relative; z-index:1;">
+  <section class="section-block" style="margin-bottom:16px;">
+    <div>
       <div class="section-title">Próximas ações</div>
       <div class="grid grid-4">
         <div class="card actions-col">
-          <div class="card-glass"></div>
+          <div class="card-texture"></div>
           <h3>Em execução</h3>
           <ul>
             <li data-key="act-exec-1" contenteditable="true">Envio da cadência semanal (Email 1–5) para 25 leads</li>
@@ -891,7 +882,7 @@ document.addEventListener('DOMContentLoaded', function(){
           </ul>
         </div>
         <div class="card actions-col">
-          <div class="card-glass"></div>
+          <div class="card-texture"></div>
           <h3>Esta semana</h3>
           <ul>
             <li data-key="act-week-1" contenteditable="true">Reunião de briefing com Tesoura de Ouro</li>
@@ -900,7 +891,7 @@ document.addEventListener('DOMContentLoaded', function(){
           </ul>
         </div>
         <div class="card actions-col">
-          <div class="card-glass"></div>
+          <div class="card-texture"></div>
           <h3>Próximos passos</h3>
           <ul>
             <li data-key="act-next-1" contenteditable="true">Follow-up final com Voalá e Bancorbrás</li>
@@ -909,7 +900,7 @@ document.addEventListener('DOMContentLoaded', function(){
           </ul>
         </div>
         <div class="card actions-col">
-          <div class="card-glass"></div>
+          <div class="card-texture"></div>
           <h3>Pendente</h3>
           <ul>
             <li>
