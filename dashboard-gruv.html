@@ -74,7 +74,7 @@
   }
 
   .kpi-label{
-    color:#AAAAAA;
+    color:#BBBBBB;
     font-size:11px;
     letter-spacing:0.10em;
   }
@@ -970,18 +970,23 @@ document.addEventListener('DOMContentLoaded', function(){
   var weekOffset = 0;
 
   function getMonday(date){
-    var d = new Date(date);
-    var day = d.getDay();
-    var diff = d.getDate() - day + (day === 0 ? -6 : 1);
-    d.setDate(diff);
-    d.setHours(0,0,0,0);
+    // Normalize to a local-midnight date with no time component, then walk
+    // back to the Monday of that week. getDay() is 0=Sun..6=Sat, so
+    // (getDay()+6)%7 remaps it to 0=Mon..6=Sun, which is exactly how many
+    // days to subtract to land on this week's Monday.
+    var d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    var isoDay = (d.getDay() + 6) % 7;
+    d.setDate(d.getDate() - isoDay);
     return d;
   }
 
   function weekKeyFor(offset){
     var monday = getMonday(new Date());
     monday.setDate(monday.getDate() + offset * 7);
-    return monday.toISOString().slice(0,10);
+    var y = monday.getFullYear();
+    var m = String(monday.getMonth() + 1).padStart(2, '0');
+    var d = String(monday.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + d;
   }
 
   function storageKey(weekKey, fieldKey){
