@@ -73,6 +73,12 @@
     font-weight:700;
   }
 
+  .kpi-label{
+    color:#AAAAAA;
+    font-size:11px;
+    letter-spacing:0.10em;
+  }
+
   /* ---------- HEADER ---------- */
 
   .header{
@@ -80,7 +86,7 @@
     overflow:hidden;
     border:var(--border);
     border-radius:16px;
-    min-height:220px;
+    min-height:280px;
     margin-bottom:48px;
     display:flex;
   }
@@ -126,7 +132,7 @@
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    padding:36px 48px;
+    padding:48px 56px;
     gap:24px;
   }
 
@@ -145,7 +151,7 @@
 
   .brand .logo{
     filter:invert(1);
-    height:72px;
+    height:80px;
     width:auto;
     object-fit:contain;
     display:block;
@@ -201,10 +207,10 @@
 
   .header-bottom h1{
     margin:0;
-    font-size:32px;
-    font-weight:600;
-    letter-spacing:-1px;
-    color:var(--text);
+    font-size:48px;
+    font-weight:700;
+    letter-spacing:-1.5px;
+    color:#FFFFFF;
   }
 
   /* ---------- SECTION SCAFFOLDING ---------- */
@@ -448,25 +454,17 @@
     padding:0;
     display:flex;
     flex-direction:column;
-    gap:14px;
   }
   .actions-col li{
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
+    display:block;
     font-size:13.5px;
     line-height:1.5;
     color:var(--text);
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
   }
-  .actions-col li::before{
-    content:"";
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:var(--dim);
-    margin-top:7px;
-    flex-shrink:0;
-  }
+  .actions-col li:first-child{ padding-top:0; }
+  .actions-col li:last-child{ border-bottom:none; padding-bottom:0; }
   .action-line{
     display:flex;
     flex-wrap:wrap;
@@ -477,10 +475,11 @@
     display:inline-block;
     font-size:10px;
     letter-spacing:0.04em;
-    padding:3px 8px;
-    border:1px solid rgba(255,255,255,0.25);
-    border-radius:999px;
-    color:var(--dim);
+    padding:2px 8px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:3px;
+    background:transparent;
+    color:#888888;
     white-space:nowrap;
   }
 
@@ -789,37 +788,37 @@ document.addEventListener('DOMContentLoaded', function(){
         <tbody>
           <tr>
             <td class="deal-name" data-key="deal-1-name" contenteditable="true">Hospital Santa Marta</td>
-            <td class="deal-service" data-key="deal-1-service" contenteditable="true">Consultoria de Dados</td>
+            <td class="deal-service" data-key="deal-1-service" contenteditable="true">Comunicação 360°</td>
             <td><span class="stage-pill" data-key="deal-1-stage" contenteditable="true">DBS-Proposta</span></td>
             <td class="deal-value" data-key="deal-1-value" contenteditable="true">R$ 115.598</td>
           </tr>
           <tr>
             <td class="deal-name" data-key="deal-2-name" contenteditable="true">MoveEdu</td>
-            <td class="deal-service" data-key="deal-2-service" contenteditable="true">BI Corporativo</td>
+            <td class="deal-service" data-key="deal-2-service" contenteditable="true">Planejamento de Marketing</td>
             <td><span class="stage-pill" data-key="deal-2-stage" contenteditable="true">DBS-Proposta</span></td>
             <td class="deal-value" data-key="deal-2-value" contenteditable="true">R$ 73.098</td>
           </tr>
           <tr>
             <td class="deal-name" data-key="deal-3-name" contenteditable="true">Tesoura de Ouro</td>
-            <td class="deal-service" data-key="deal-3-service" contenteditable="true">Automação Comercial</td>
+            <td class="deal-service" data-key="deal-3-service" contenteditable="true">Mkt 360°</td>
             <td><span class="stage-pill" data-key="deal-3-stage" contenteditable="true">DBA-Briefing</span></td>
             <td class="deal-value" data-key="deal-3-value" contenteditable="true">—</td>
           </tr>
           <tr>
             <td class="deal-name" data-key="deal-4-name" contenteditable="true">Voalá</td>
-            <td class="deal-service" data-key="deal-4-service" contenteditable="true">Analytics Preditivo</td>
+            <td class="deal-service" data-key="deal-4-service" contenteditable="true">Renovação de Contrato</td>
             <td><span class="stage-pill" data-key="deal-4-stage" contenteditable="true">Negócio Provável</span></td>
             <td class="deal-value" data-key="deal-4-value" contenteditable="true">—</td>
           </tr>
           <tr>
             <td class="deal-name" data-key="deal-5-name" contenteditable="true">Bancorbrás</td>
-            <td class="deal-service" data-key="deal-5-service" contenteditable="true">Governança de Dados</td>
+            <td class="deal-service" data-key="deal-5-service" contenteditable="true">Renovação de Contrato</td>
             <td><span class="stage-pill" data-key="deal-5-stage" contenteditable="true">Negócio Provável</span></td>
             <td class="deal-value" data-key="deal-5-value" contenteditable="true">—</td>
           </tr>
           <tr>
             <td class="deal-name" data-key="deal-6-name" contenteditable="true">ASSAFEST</td>
-            <td class="deal-service" data-key="deal-6-service" contenteditable="true">Dashboards Executivos</td>
+            <td class="deal-service" data-key="deal-6-service" contenteditable="true">Festival Nacional do Assado</td>
             <td><span class="stage-pill" data-key="deal-6-stage" contenteditable="true">Cliente Potencial</span></td>
             <td class="deal-value" data-key="deal-6-value" contenteditable="true">—</td>
           </tr>
