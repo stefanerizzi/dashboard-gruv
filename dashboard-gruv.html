@@ -13,6 +13,7 @@
     --text:#FFFFFF;
     --label:#888888;
     --dim:#AAAAAA;
+    --faint:#5C5C5C;
     --border:1px solid rgba(255,255,255,0.10);
     --card-bg:rgba(255,255,255,0.04);
     --edit:rgba(255,255,255,0.28);
@@ -228,6 +229,7 @@
   .grid-2 > div{ display:flex; flex-direction:column; }
   .grid-2 > div > .card{ flex:1; }
   .grid-4{ grid-template-columns:repeat(4, 1fr); }
+  .grid-3{ grid-template-columns:repeat(3, 1fr); }
 
   .section-block{
     margin-bottom:48px;
@@ -333,11 +335,11 @@
     font-weight:400;
   }
   .kpi-source{
-    font-size:10px;
-    letter-spacing:0.08em;
+    font-size:9px;
+    letter-spacing:0.04em;
     text-transform:uppercase;
-    color:var(--label);
-    font-weight:500;
+    color:var(--faint);
+    font-weight:400;
   }
   .kpi-note{
     font-size:11px;
@@ -504,6 +506,9 @@
     grid-template-columns:repeat(4, 1fr);
     gap:0;
   }
+  .stat-row-3{
+    grid-template-columns:repeat(3, 1fr);
+  }
   .stat{
     padding:32px 20px;
     border-right:var(--border);
@@ -627,6 +632,17 @@
     display:flex;
     flex-direction:column;
   }
+  .deal-empty-note{
+    color:var(--dim);
+    font-size:12.5px;
+    font-style:italic;
+  }
+  .deal-empty-note[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .deal-empty-note[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
   .deal-col-total{
     margin-top:auto;
     padding-top:20px;
@@ -657,7 +673,7 @@
   /* Próximas ações: single panel, columns divided by internal borders */
   .actions-panel{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(4, 1fr);
     gap:0;
     padding:0;
   }
@@ -717,6 +733,7 @@
     .grid-5{ grid-template-columns:repeat(2,1fr); }
     .grid-2{ grid-template-columns:1fr; }
     .grid-4{ grid-template-columns:1fr; }
+    .grid-3{ grid-template-columns:1fr; }
     .stat-row{ grid-template-columns:repeat(2,1fr); }
     .stat{ border-right:none; border-bottom:var(--border); }
     .actions-panel{ grid-template-columns:1fr; }
@@ -898,13 +915,14 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="kpi-label">Leads de mídia</div>
       <div class="kpi-source" data-key="kpi-midia-source" contenteditable="true">Meta Ads</div>
       <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-midia" contenteditable="true">0</span></div>
+      <div class="kpi-note" data-key="kpi-midia-note" contenteditable="true">Campanha pausada</div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
       <div class="kpi-label">Leads contatados</div>
       <div class="kpi-source" data-key="kpi-leads-source" contenteditable="true">Prospecção Claude</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-leads" contenteditable="true">0</span></div>
-      <div class="kpi-note" data-key="kpi-resposta-note" contenteditable="true">Taxa de resposta: –</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-leads" contenteditable="true">32</span></div>
+      <div class="kpi-note" data-key="kpi-resposta-note" contenteditable="true">Taxa de resposta: 9,38%</div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
@@ -951,6 +969,7 @@ document.addEventListener('DOMContentLoaded', function(){
               <div class="stat-value" data-key="meta-qualif" contenteditable="true">0%</div>
             </div>
           </div>
+          <div class="stat-grid-note" data-key="meta-info-note" contenteditable="true">Campanha pausada</div>
         </div>
       </div>
 
@@ -961,14 +980,14 @@ document.addEventListener('DOMContentLoaded', function(){
           <div class="bar-row" data-group="leads-canal">
             <div class="bar-label">Gmail</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="leads-gmail" contenteditable="true">0</div>
+            <div class="bar-value" data-key="leads-gmail" contenteditable="true">12</div>
           </div>
           <div class="bar-row" data-group="leads-canal">
             <div class="bar-label">LinkedIn</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="leads-linkedin" contenteditable="true">0</div>
+            <div class="bar-value" data-key="leads-linkedin" contenteditable="true">20</div>
           </div>
-          <div class="panel-note" data-key="leads-resumo-note" contenteditable="true">Total de contatados: 0 • Taxa de resposta: 0% • Retorno positivo: 0% • Retorno negativo: 0%</div>
+          <div class="panel-note" data-key="leads-resumo-note" contenteditable="true">Total de contatados: 32 • Taxa de resposta: 9,38% (3)</div>
         </div>
       </div>
     </div>
@@ -1038,14 +1057,8 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="grid grid-4">
           <div class="card actions-col deal-col">
             <div class="card-texture"></div>
-            <h3 data-key="deal-col-1-title" contenteditable="true">Conexão (2)</h3>
+            <h3 data-key="deal-col-1-title" contenteditable="true">Conexão (1)</h3>
             <ul>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-1-tag" contenteditable="true">[SCFEST]</span><span class="deal-desc" data-key="deal-1-desc" contenteditable="true">Redes sociais e mídia</span></span>
-                  <span class="deal-value" data-key="deal-1-value" contenteditable="true">R$ 0</span>
-                </div>
-              </li>
               <li>
                 <div class="deal-row-top">
                   <span class="deal-name"><span class="deal-tag" data-key="deal-2-tag" contenteditable="true">[ASSAFEST]</span><span class="deal-desc" data-key="deal-2-desc" contenteditable="true">Festival Nacional do Assado</span></span>
@@ -1062,22 +1075,28 @@ document.addEventListener('DOMContentLoaded', function(){
             <ul>
               <li>
                 <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-3-tag" contenteditable="true">[PISOTEC]</span><span class="deal-desc" data-key="deal-3-desc" contenteditable="true">Conteúdo, Inbound & Mídia</span></span>
-                  <span class="deal-value" data-key="deal-3-value" contenteditable="true">R$ 114.593,74</span>
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-1-tag" contenteditable="true">[SCFEST]</span><span class="deal-desc" data-key="deal-1-desc" contenteditable="true">Redes sociais e mídia</span></span>
+                  <span class="deal-value" data-key="deal-1-value" contenteditable="true">R$ 0</span>
                 </div>
               </li>
             </ul>
-            <div class="deal-col-total" data-key="deal-col-2-total" contenteditable="true">Total: R$ 114.593,74</div>
+            <div class="deal-col-total" data-key="deal-col-2-total" contenteditable="true">Total: R$ 0</div>
           </div>
 
           <div class="card actions-col deal-col">
             <div class="card-texture"></div>
-            <h3 data-key="deal-col-3-title" contenteditable="true">DBS-Proposta (4)</h3>
+            <h3 data-key="deal-col-3-title" contenteditable="true">DBS-Proposta (5)</h3>
             <ul>
               <li>
                 <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-3-tag" contenteditable="true">[PISOTEC]</span><span class="deal-desc" data-key="deal-3-desc" contenteditable="true">Conteúdo, Inbound & Mídia</span></span>
+                  <span class="deal-value" data-key="deal-3-value" contenteditable="true">R$ 114.593,74</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
                   <span class="deal-name"><span class="deal-tag" data-key="deal-4-tag" contenteditable="true">[CLÍNICA WELLNESS]</span><span class="deal-desc" data-key="deal-4-desc" contenteditable="true">Redes sociais e creators</span></span>
-                  <span class="deal-value" data-key="deal-4-value" contenteditable="true">R$ 0</span>
+                  <span class="deal-value" data-key="deal-4-value" contenteditable="true">R$ 117.840,00</span>
                 </div>
               </li>
               <li>
@@ -1099,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
               </li>
             </ul>
-            <div class="deal-col-total" data-key="deal-col-3-total" contenteditable="true">Total: R$ 265.700,00</div>
+            <div class="deal-col-total" data-key="deal-col-3-total" contenteditable="true">Total: R$ 498.133,74</div>
           </div>
 
           <div class="card actions-col deal-col">
@@ -1130,6 +1149,54 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
   </section>
 
+  <!-- Metas de agosto (financeiro e comercial) -->
+  <section class="section-block">
+    <div class="grid grid-2">
+      <div>
+        <div class="section-title">Metas financeiras <span class="title-dot">·</span> Agosto</div>
+        <div class="card stat-grid">
+          <div class="card-texture"></div>
+          <div class="stat-row stat-row-3">
+            <div class="stat">
+              <div class="stat-label">Previsto</div>
+              <div class="stat-value" data-key="meta-fin-previsto" contenteditable="true">R$ 95.553,80</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Meta</div>
+              <div class="stat-value" data-key="meta-fin-meta" contenteditable="true">R$ 196.759,93</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Alcançado</div>
+              <div class="stat-value" data-key="meta-fin-alcancado" contenteditable="true">–</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Metas comerciais <span class="title-dot">·</span> Agosto</div>
+        <div class="card stat-grid">
+          <div class="card-texture"></div>
+          <div class="stat-row stat-row-3">
+            <div class="stat">
+              <div class="stat-label">Meta de negócios</div>
+              <div class="stat-value" data-key="meta-com-meta" contenteditable="true">15</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Alcançado</div>
+              <div class="stat-value" data-key="meta-com-alcancado" contenteditable="true">–</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Convertidos</div>
+              <div class="stat-value" data-key="meta-com-convertidos" contenteditable="true">–</div>
+            </div>
+          </div>
+          <div class="stat-grid-note" data-key="meta-com-conversao-note" contenteditable="true">Meta de taxa de conversão: 20% • Taxa de conversão 1º tri 2026: 16,67%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- Próximas ações -->
   <section class="section-block" style="margin-bottom:16px;">
@@ -1137,45 +1204,38 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="card actions-panel">
       <div class="card-texture"></div>
       <div class="actions-panel-col">
+        <h3>Atualizações</h3>
+        <ul>
+          <li data-key="act-update-1" contenteditable="true">Proposta comercial apresentada e enviada à Tesoura de Ouro (07/08)</li>
+          <li data-key="act-update-2" contenteditable="true">Novo número comercial da Ste ativado</li>
+          <li data-key="act-update-3" contenteditable="true">Proposta comercial para a Clínica Wellness em andamento, em parceria com a Brend</li>
+          <li data-key="act-update-4" contenteditable="true">SC Fest avançou para a etapa de briefing</li>
+        </ul>
+      </div>
+      <div class="actions-panel-col">
         <h3>Esta semana</h3>
         <ul>
-          <li data-key="act-week-1" contenteditable="true">Reunião de briefing com Tesoura de Ouro</li>
-          <li data-key="act-week-2" contenteditable="true">Envio de proposta comercial para MoveEdu</li>
-          <li data-key="act-week-3" contenteditable="true">Disparo da nutrição RD Station (4 e-mails agendados)</li>
-          <li data-key="act-exec-1" contenteditable="true">Envio da cadência semanal (Email 1–5) para 25 leads</li>
-          <li data-key="act-exec-2" contenteditable="true">Follow-up com Hospital Santa Marta (proposta enviada)</li>
-          <li data-key="act-exec-3" contenteditable="true">Ajuste de segmentação nas campanhas de Meta Ads</li>
+          <li data-key="act-week-1" contenteditable="true">Follow-up com a Tesoura de Ouro</li>
+          <li data-key="act-week-2" contenteditable="true">Follow-up com o Hospital Santa Marta</li>
+          <li data-key="act-week-3" contenteditable="true">Envio da proposta comercial para a Pisotec</li>
+          <li data-key="act-week-4" contenteditable="true">Ajustes finais nova apresentação comercial</li>
+          <li data-key="act-exec-1" contenteditable="true">Disparo do e-mail 2 da nutrição RD Station</li>
+          <li data-key="act-exec-2" contenteditable="true">Envio da cadência semanal para os leads do Claude</li>
+          <li data-key="act-exec-3" contenteditable="true">Revisão e configuração da nova campanha de mídia</li>
         </ul>
       </div>
       <div class="actions-panel-col">
         <h3>Próximos passos</h3>
         <ul>
-          <li data-key="act-next-1" contenteditable="true">Follow-up final com Voalá e Bancorbrás</li>
-          <li data-key="act-next-2" contenteditable="true">Planejamento da cadência do próximo ciclo</li>
-          <li data-key="act-next-3" contenteditable="true">Revisão das metas comerciais do mês</li>
+          <li data-key="act-next-1" contenteditable="true">Follow-up com Voalá e Bancorbrás</li>
         </ul>
       </div>
       <div class="actions-panel-col">
-        <h3>Pendente</h3>
+        <h3>Pendentes</h3>
         <ul>
-          <li>
-            <div class="action-line">
-              <span data-key="act-pend-1" contenteditable="true">Definir nova LP para próxima campanha de mídia</span>
-              <span class="tag-chip">Mídia</span>
-            </div>
-          </li>
-          <li>
-            <div class="action-line">
-              <span data-key="act-pend-2" contenteditable="true">Onboarding Débs no fluxo de cadência com Claude</span>
-              <span class="tag-chip">Operacional</span>
-            </div>
-          </li>
-          <li>
-            <div class="action-line">
-              <span data-key="act-pend-3" contenteditable="true">Estruturar planilha de DRE com acesso diário</span>
-              <span class="tag-chip">Financeiro</span>
-            </div>
-          </li>
+          <li data-key="act-pend-1" contenteditable="true">Assinatura de contrato — Bancorbrás e Voalá</li>
+          <li data-key="act-pend-2" contenteditable="true">Reestruturação da calculadora comercial</li>
+          <li data-key="act-pend-3" contenteditable="true">Estruturação do dashboard de DRE</li>
         </ul>
       </div>
     </div>
