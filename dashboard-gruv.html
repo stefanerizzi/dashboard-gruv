@@ -73,12 +73,6 @@
     font-weight:700;
   }
 
-  .kpi-label{
-    color:#BBBBBB;
-    font-size:11px;
-    letter-spacing:0.10em;
-  }
-
   /* ---------- HEADER ---------- */
 
   .header{
@@ -217,14 +211,22 @@
   .section-title{
     margin:0 0 18px;
   }
+  .title-dot{
+    font-size:14px;
+    vertical-align:-1px;
+    display:inline-block;
+  }
 
   .grid{
     display:grid;
     gap:20px;
   }
+  .grid > *{ min-width:0; }
 
   .grid-5{ grid-template-columns:repeat(5, 1fr); }
   .grid-2{ grid-template-columns:1fr 1fr; }
+  .grid-2 > div{ display:flex; flex-direction:column; }
+  .grid-2 > div > .card{ flex:1; }
   .grid-4{ grid-template-columns:repeat(4, 1fr); }
 
   .section-block{
@@ -289,18 +291,34 @@
     background:rgba(255,255,255,0.09);
     box-shadow:inset 0 -1px 0 #ffffff;
   }
+  .kpi-source[contenteditable="true"],
+  .kpi-note[contenteditable="true"],
+  .kpi-split-label[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .kpi-source[contenteditable="true"]:hover,
+  .kpi-note[contenteditable="true"]:hover,
+  .kpi-split-label[contenteditable="true"]:hover{
+    box-shadow:none;
+  }
+  .kpi-source[contenteditable="true"]:focus,
+  .kpi-note[contenteditable="true"]:focus,
+  .kpi-split-label[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
 
   /* ---------- KPIs ---------- */
 
   .kpi{
     display:flex;
     flex-direction:column;
-    gap:16px;
+    gap:6px;
   }
   .kpi-value-row{
     display:flex;
     align-items:baseline;
     gap:4px;
+    margin-top:4px;
   }
   .kpi-value{
     font-size:56px;
@@ -314,6 +332,61 @@
     color:var(--dim);
     font-weight:400;
   }
+  .kpi-source{
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--label);
+    font-weight:500;
+  }
+  .kpi-note{
+    font-size:11px;
+    letter-spacing:0.01em;
+    color:var(--dim);
+    font-weight:400;
+  }
+  .card.panel{
+    display:flex;
+    flex-direction:column;
+  }
+  .panel-note{
+    margin-top:auto;
+    font-size:11px;
+    letter-spacing:0.01em;
+    color:var(--dim);
+    font-weight:400;
+    padding:14px 20px 16px;
+    border-top:var(--border);
+  }
+  .panel-note[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .panel-note[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
+  .kpi-split{
+    display:flex;
+    gap:24px;
+    margin-top:4px;
+  }
+  .kpi-split-item{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .kpi-value-sm{
+    font-size:32px;
+    font-weight:700;
+    letter-spacing:-1px;
+    font-variant-numeric:tabular-nums;
+    color:var(--text);
+  }
+  .kpi-split-label{
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--dim);
+  }
 
   /* ---------- BAR CHARTS ---------- */
 
@@ -325,7 +398,8 @@
     padding:12px 0;
     border-bottom:var(--border);
   }
-  .bar-row:last-child{ border-bottom:none; }
+  .bar-row:not(:has(~ .bar-row)){ border-bottom:none; }
+  .bar-row:has(+ .panel-note){ border-bottom:none; }
 
   .bar-label{
     font-size:13px;
@@ -353,19 +427,9 @@
     text-align:right;
   }
 
-  /* funnel variant: centered, shrinking bars */
+  /* funnel variant: same left-aligned bar style, wider label column */
   .funnel .bar-row{
     grid-template-columns:160px 1fr 48px;
-  }
-  .funnel .bar-track{
-    background:transparent;
-    display:flex;
-    justify-content:center;
-  }
-  .funnel .bar-fill{
-    height:22px;
-    border-radius:2px;
-    background:#FFFFFF;
   }
 
   /* ---------- DEALS TABLE ---------- */
@@ -386,6 +450,26 @@
     vertical-align:middle;
   }
   .deals tr:first-child td{ border-top:none; }
+  .deal-group td{
+    padding:14px 30px 10px;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--label);
+    font-weight:500;
+    background:rgba(255,255,255,0.02);
+    text-align:left !important;
+  }
+  .deal-group td[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .deal-group td[contenteditable="true"]:hover{
+    box-shadow:none;
+  }
+  .deal-group td[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
+  .deal-group:first-child td{ border-top:none; }
   .deals-wrap{ padding:32px 0; }
   .deals-wrap th:first-child, .deals-wrap td:first-child{ padding-left:32px; }
   .deals-wrap th:last-child, .deals-wrap td:last-child{ padding-right:32px; }
@@ -410,6 +494,12 @@
   /* ---------- STAT ROWS (Meta Ads / Nutrição) ---------- */
 
   .stat-grid{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:190px;
+  }
+  .stat-row{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     gap:0;
@@ -418,15 +508,43 @@
     padding:32px 20px;
     border-right:var(--border);
   }
-  .stat:last-child{ border-right:none; }
+  .stat:not(:has(+ .stat)){ border-right:none; }
   .stat-label{
     margin-bottom:14px;
+    white-space:nowrap;
   }
   .stat-value{
     font-size:26px;
     letter-spacing:-0.02em;
     font-variant-numeric:tabular-nums;
     white-space:nowrap;
+  }
+  .stat-subvalue{
+    font-size:12px;
+    color:var(--dim);
+    margin-top:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat-subvalue[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .stat-subvalue[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
+  .stat-grid-note{
+    margin-top:auto;
+    font-size:11px;
+    letter-spacing:0.01em;
+    color:var(--dim);
+    font-weight:400;
+    padding:14px 20px 16px;
+    border-top:var(--border);
+  }
+  .stat-grid-note[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .stat-grid-note[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
   }
 
   /* ---------- NEXT ACTIONS ---------- */
@@ -451,25 +569,138 @@
     line-height:1.5;
     color:var(--text);
     padding:12px 0;
-    border-bottom:1px solid rgba(255,255,255,0.06);
+    border-bottom:var(--border);
   }
   .actions-col li:first-child{ padding-top:0; }
   .actions-col li:last-child{ border-bottom:none; padding-bottom:0; }
+
+  .deal-col h3[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .deal-col h3[contenteditable="true"]:hover{
+    box-shadow:none;
+  }
+  .deal-col h3[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
+  .deal-row-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .deal-row-top .deal-name{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:13px;
+  }
+  .deal-tag{
+    color:var(--text);
+    font-weight:700;
+  }
+  .deal-desc{
+    color:var(--dim);
+    font-weight:400;
+    font-size:12px;
+  }
+  .deal-tag[contenteditable="true"],
+  .deal-desc[contenteditable="true"],
+  .deal-row-top .deal-value[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .deal-tag[contenteditable="true"]:focus,
+  .deal-desc[contenteditable="true"]:focus,
+  .deal-row-top .deal-value[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
+  .deal-row-top .deal-value{
+    font-size:12.5px;
+    white-space:nowrap;
+    padding-top:1px;
+  }
+  .deal-col .deal-service{
+    font-size:12px;
+    margin-top:4px;
+  }
+  .card.deal-col{
+    display:flex;
+    flex-direction:column;
+  }
+  .deal-col-total{
+    margin-top:auto;
+    padding-top:20px;
+    border-top:var(--border);
+    font-size:12.5px;
+    color:var(--dim);
+    font-variant-numeric:tabular-nums;
+    text-align:right;
+  }
+  .deal-col-total[contenteditable="true"]{
+    box-shadow:none;
+  }
+  .deal-col-total[contenteditable="true"]:focus{
+    box-shadow:inset 0 -1px 0 var(--edit);
+  }
+  .deal-col-stack{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
   .action-line{
     display:flex;
-    flex-wrap:wrap;
-    align-items:center;
+    flex-direction:column;
+    align-items:flex-start;
     gap:8px;
   }
+
+  /* Próximas ações: single panel, columns divided by internal borders */
+  .actions-panel{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    padding:0;
+  }
+  .actions-panel-col{
+    padding:28px;
+    border-right:var(--border);
+  }
+  .actions-panel-col:not(:has(+ .actions-panel-col)){
+    border-right:none;
+  }
+  .actions-panel-col h3{
+    margin:0 0 18px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--text);
+  }
+  .actions-panel-col ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+  }
+  .actions-panel-col li{
+    display:block;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--text);
+    padding:12px 0;
+    border-bottom:var(--border);
+  }
+  .actions-panel-col li:first-child{ padding-top:0; }
+  .actions-panel-col li:last-child{ border-bottom:none; padding-bottom:0; }
   .tag-chip{
     display:inline-block;
     font-size:10px;
     letter-spacing:0.04em;
     padding:2px 8px;
-    border:1px solid rgba(255,255,255,0.15);
+    border:var(--border);
     border-radius:3px;
     background:transparent;
-    color:#888888;
+    color:var(--label);
     white-space:nowrap;
   }
 
@@ -479,15 +710,18 @@
     font-size:11px;
     letter-spacing:0.08em;
     text-transform:uppercase;
-    margin-top:16px;
+    margin-top:72px;
   }
 
   @media (max-width:1000px){
     .grid-5{ grid-template-columns:repeat(2,1fr); }
     .grid-2{ grid-template-columns:1fr; }
     .grid-4{ grid-template-columns:1fr; }
-    .stat-grid{ grid-template-columns:repeat(2,1fr); }
+    .stat-row{ grid-template-columns:repeat(2,1fr); }
     .stat{ border-right:none; border-bottom:var(--border); }
+    .actions-panel{ grid-template-columns:1fr; }
+    .actions-panel-col{ border-right:none; border-bottom:var(--border); }
+    .actions-panel-col:last-child{ border-bottom:none; }
     .deals th:nth-child(2), .deals td:nth-child(2){ display:none; }
     .wrap{ padding:32px 20px 80px; }
     .header-content{ padding:28px 28px; }
@@ -661,100 +895,138 @@ document.addEventListener('DOMContentLoaded', function(){
   <section class="grid grid-5" style="margin-bottom:48px;">
     <div class="card kpi">
       <div class="card-glass"></div>
-      <div class="kpi-label">E-mails enviados</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-emails" contenteditable="true">47</span></div>
+      <div class="kpi-label">Leads de mídia</div>
+      <div class="kpi-source" data-key="kpi-midia-source" contenteditable="true">Meta Ads</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-midia" contenteditable="true">0</span></div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
       <div class="kpi-label">Leads contatados</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-leads" contenteditable="true">25</span></div>
+      <div class="kpi-source" data-key="kpi-leads-source" contenteditable="true">Prospecção Claude</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-leads" contenteditable="true">0</span></div>
+      <div class="kpi-note" data-key="kpi-resposta-note" contenteditable="true">Taxa de resposta: –</div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
-      <div class="kpi-label">Taxa de resposta</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-resposta" contenteditable="true">8</span><span class="kpi-unit">%</span></div>
+      <div class="kpi-label">Contatos</div>
+      <div class="kpi-source" data-key="kpi-contatos-source" contenteditable="true">RD Conversas</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-contatos" contenteditable="true">1</span></div>
+    </div>
+    <div class="card kpi">
+      <div class="card-glass"></div>
+      <div class="kpi-label">E-mails enviados</div>
+      <div class="kpi-source" data-key="kpi-emails-source" contenteditable="true">RD Station Marketing</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-emails" contenteditable="true">1</span></div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
       <div class="kpi-label">Negociações ativas</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-negociacoes" contenteditable="true">19</span></div>
-    </div>
-    <div class="card kpi">
-      <div class="card-glass"></div>
-      <div class="kpi-label">Base RD Station</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-baserd" contenteditable="true">3.776</span></div>
+      <div class="kpi-source" data-key="kpi-negociacoes-source" contenteditable="true">RD CRM</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-negociacoes" contenteditable="true">10</span></div>
     </div>
   </section>
 
-  <!-- Cadência + Funil -->
+  <!-- Leads de mídia + Leads contatados (aquisição) -->
   <section class="section-block">
     <div class="grid grid-2">
       <div>
-        <div class="section-title">Cadência de prospecção</div>
-        <div class="card panel">
+        <div class="section-title">Leads de mídia <span class="title-dot">·</span> Meta Ads</div>
+        <div class="card stat-grid">
           <div class="card-texture"></div>
-          <div class="bar-row" data-group="cadencia">
-            <div class="bar-label">Email 1</div>
-            <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="cad-1" contenteditable="true">25</div>
-          </div>
-          <div class="bar-row" data-group="cadencia">
-            <div class="bar-label">Email 2</div>
-            <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="cad-2" contenteditable="true">18</div>
-          </div>
-          <div class="bar-row" data-group="cadencia">
-            <div class="bar-label">Email 3</div>
-            <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="cad-3" contenteditable="true">12</div>
-          </div>
-          <div class="bar-row" data-group="cadencia">
-            <div class="bar-label">Email 4</div>
-            <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="cad-4" contenteditable="true">7</div>
-          </div>
-          <div class="bar-row" data-group="cadencia">
-            <div class="bar-label">Email 5</div>
-            <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="cad-5" contenteditable="true">4</div>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="stat-label">Leads gerados</div>
+              <div class="stat-value" data-key="meta-leads" contenteditable="true">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">CPL</div>
+              <div class="stat-value" data-key="meta-cpl" contenteditable="true">R$ 0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Investimento</div>
+              <div class="stat-value" data-key="meta-invest" contenteditable="true">R$ 0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Qualificados</div>
+              <div class="stat-value" data-key="meta-qualif" contenteditable="true">0%</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div>
-        <div class="section-title">Funil de negociações · RD Station</div>
-        <div class="card panel funnel">
+        <div class="section-title">Leads contatados <span class="title-dot">·</span> Prospecção Claude</div>
+        <div class="card panel">
           <div class="card-texture"></div>
-          <div class="bar-row" data-group="funil">
-            <div class="bar-label">Contato Iniciado</div>
+          <div class="bar-row" data-group="leads-canal">
+            <div class="bar-label">Gmail</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="funil-contato" contenteditable="true">19</div>
+            <div class="bar-value" data-key="leads-gmail" contenteditable="true">0</div>
           </div>
-          <div class="bar-row" data-group="funil">
-            <div class="bar-label">Cliente Potencial</div>
+          <div class="bar-row" data-group="leads-canal">
+            <div class="bar-label">LinkedIn</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="funil-potencial" contenteditable="true">14</div>
+            <div class="bar-value" data-key="leads-linkedin" contenteditable="true">0</div>
           </div>
-          <div class="bar-row" data-group="funil">
-            <div class="bar-label">Conexão</div>
+          <div class="panel-note" data-key="leads-resumo-note" contenteditable="true">Total de contatados: 0 • Taxa de resposta: 0% • Retorno positivo: 0% • Retorno negativo: 0%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contatos + E-mails enviados (engajamento) -->
+  <section class="section-block">
+    <div class="grid grid-2">
+      <div>
+        <div class="section-title">Contatos <span class="title-dot">·</span> RD Conversas</div>
+        <div class="card panel">
+          <div class="card-texture"></div>
+          <div class="bar-row" data-group="conversas">
+            <div class="bar-label">Ativos</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="funil-conexao" contenteditable="true">10</div>
+            <div class="bar-value" data-key="conv-ativo" contenteditable="true">1</div>
           </div>
-          <div class="bar-row" data-group="funil">
-            <div class="bar-label">DBA-Briefing</div>
+          <div class="bar-row" data-group="conversas">
+            <div class="bar-label">Em espera</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="funil-briefing" contenteditable="true">7</div>
+            <div class="bar-value" data-key="conv-espera" contenteditable="true">0</div>
           </div>
-          <div class="bar-row" data-group="funil">
-            <div class="bar-label">DBS-Proposta</div>
+          <div class="bar-row" data-group="conversas">
+            <div class="bar-label">Resolvidos</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="funil-proposta" contenteditable="true">4</div>
+            <div class="bar-value" data-key="conv-resolvido" contenteditable="true">0</div>
           </div>
-          <div class="bar-row" data-group="funil">
-            <div class="bar-label">Negócio Provável</div>
-            <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="funil-negocio" contenteditable="true">3</div>
+          <div class="panel-note" data-key="conv-nota" contenteditable="true">Contato ativo: Nuala Cosméticos</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">E-mails enviados <span class="title-dot">·</span> RD Station Marketing</div>
+        <div class="card stat-grid">
+          <div class="card-texture"></div>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="stat-label">Selecionados</div>
+              <div class="stat-value" data-key="camp-enviados-pct" contenteditable="true">99,88%</div>
+              <div class="stat-subvalue" data-key="camp-enviados-abs" contenteditable="true">828</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Entregues</div>
+              <div class="stat-value" data-key="camp-entregues-pct" contenteditable="true">92,75%</div>
+              <div class="stat-subvalue" data-key="camp-entregues-abs" contenteditable="true">768</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Tx. Abertura</div>
+              <div class="stat-value" data-key="camp-abertura-pct" contenteditable="true">28,13%</div>
+              <div class="stat-subvalue" data-key="camp-abertura-abs" contenteditable="true">216</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Tx. Cliques únicos</div>
+              <div class="stat-value" data-key="camp-cliques-pct" contenteditable="true">0,13%</div>
+              <div class="stat-subvalue" data-key="camp-cliques-abs" contenteditable="true">1</div>
+            </div>
           </div>
+          <div class="stat-grid-note" data-key="camp-info-note" contenteditable="true">E-mail 1 • Base: CRM • Envio: 05/08 • Assunto: Recorde de vendas. O que sua marca aprende?</div>
         </div>
       </div>
     </div>
@@ -762,172 +1034,154 @@ document.addEventListener('DOMContentLoaded', function(){
 
   <!-- Negociações em destaque -->
   <section class="section-block">
-    <div class="section-title">Negociações em destaque</div>
-    <div class="card deals-wrap">
-      <div class="card-texture"></div>
-      <table class="deals">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Tipo de serviço</th>
-            <th>Etapa</th>
-            <th>Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="deal-name" data-key="deal-1-name" contenteditable="true">Hospital Santa Marta</td>
-            <td class="deal-service" data-key="deal-1-service" contenteditable="true">Comunicação 360°</td>
-            <td><span class="stage-pill" data-key="deal-1-stage" contenteditable="true">DBS-Proposta</span></td>
-            <td class="deal-value" data-key="deal-1-value" contenteditable="true">R$ 115.598</td>
-          </tr>
-          <tr>
-            <td class="deal-name" data-key="deal-2-name" contenteditable="true">MoveEdu</td>
-            <td class="deal-service" data-key="deal-2-service" contenteditable="true">Planejamento de Marketing</td>
-            <td><span class="stage-pill" data-key="deal-2-stage" contenteditable="true">DBS-Proposta</span></td>
-            <td class="deal-value" data-key="deal-2-value" contenteditable="true">R$ 73.098</td>
-          </tr>
-          <tr>
-            <td class="deal-name" data-key="deal-3-name" contenteditable="true">Tesoura de Ouro</td>
-            <td class="deal-service" data-key="deal-3-service" contenteditable="true">Mkt 360°</td>
-            <td><span class="stage-pill" data-key="deal-3-stage" contenteditable="true">DBA-Briefing</span></td>
-            <td class="deal-value" data-key="deal-3-value" contenteditable="true">—</td>
-          </tr>
-          <tr>
-            <td class="deal-name" data-key="deal-4-name" contenteditable="true">Voalá</td>
-            <td class="deal-service" data-key="deal-4-service" contenteditable="true">Renovação de Contrato</td>
-            <td><span class="stage-pill" data-key="deal-4-stage" contenteditable="true">Negócio Provável</span></td>
-            <td class="deal-value" data-key="deal-4-value" contenteditable="true">—</td>
-          </tr>
-          <tr>
-            <td class="deal-name" data-key="deal-5-name" contenteditable="true">Bancorbrás</td>
-            <td class="deal-service" data-key="deal-5-service" contenteditable="true">Renovação de Contrato</td>
-            <td><span class="stage-pill" data-key="deal-5-stage" contenteditable="true">Negócio Provável</span></td>
-            <td class="deal-value" data-key="deal-5-value" contenteditable="true">—</td>
-          </tr>
-          <tr>
-            <td class="deal-name" data-key="deal-6-name" contenteditable="true">ASSAFEST</td>
-            <td class="deal-service" data-key="deal-6-service" contenteditable="true">Festival Nacional do Assado</td>
-            <td><span class="stage-pill" data-key="deal-6-stage" contenteditable="true">Cliente Potencial</span></td>
-            <td class="deal-value" data-key="deal-6-value" contenteditable="true">—</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="section-title">Negociações ativas <span class="title-dot">·</span> RD CRM</div>
+    <div class="grid grid-4">
+          <div class="card actions-col deal-col">
+            <div class="card-texture"></div>
+            <h3 data-key="deal-col-1-title" contenteditable="true">Conexão (2)</h3>
+            <ul>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-1-tag" contenteditable="true">[SCFEST]</span><span class="deal-desc" data-key="deal-1-desc" contenteditable="true">Redes sociais e mídia</span></span>
+                  <span class="deal-value" data-key="deal-1-value" contenteditable="true">R$ 0</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-2-tag" contenteditable="true">[ASSAFEST]</span><span class="deal-desc" data-key="deal-2-desc" contenteditable="true">Festival Nacional do Assado</span></span>
+                  <span class="deal-value" data-key="deal-2-value" contenteditable="true">R$ 0</span>
+                </div>
+              </li>
+            </ul>
+            <div class="deal-col-total" data-key="deal-col-1-total" contenteditable="true">Total: R$ 0</div>
+          </div>
+
+          <div class="card actions-col deal-col">
+            <div class="card-texture"></div>
+            <h3 data-key="deal-col-2-title" contenteditable="true">DBA-Briefing (1)</h3>
+            <ul>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-3-tag" contenteditable="true">[PISOTEC]</span><span class="deal-desc" data-key="deal-3-desc" contenteditable="true">Conteúdo, Inbound & Mídia</span></span>
+                  <span class="deal-value" data-key="deal-3-value" contenteditable="true">R$ 114.593,74</span>
+                </div>
+              </li>
+            </ul>
+            <div class="deal-col-total" data-key="deal-col-2-total" contenteditable="true">Total: R$ 114.593,74</div>
+          </div>
+
+          <div class="card actions-col deal-col">
+            <div class="card-texture"></div>
+            <h3 data-key="deal-col-3-title" contenteditable="true">DBS-Proposta (4)</h3>
+            <ul>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-4-tag" contenteditable="true">[CLÍNICA WELLNESS]</span><span class="deal-desc" data-key="deal-4-desc" contenteditable="true">Redes sociais e creators</span></span>
+                  <span class="deal-value" data-key="deal-4-value" contenteditable="true">R$ 0</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-5-tag" contenteditable="true">[HOSP. SANTA MARTA]</span><span class="deal-desc" data-key="deal-5-desc" contenteditable="true">Mídia on e off</span></span>
+                  <span class="deal-value" data-key="deal-5-value" contenteditable="true">R$ 223.200,00</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-6-tag" contenteditable="true">[SERGINHO]</span><span class="deal-desc" data-key="deal-6-desc" contenteditable="true">Criação de Estratégia de Mkt</span></span>
+                  <span class="deal-value" data-key="deal-6-value" contenteditable="true">R$ 35.000</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-7-tag" contenteditable="true">[SERGINHO]</span><span class="deal-desc" data-key="deal-7-desc" contenteditable="true">Naming</span></span>
+                  <span class="deal-value" data-key="deal-7-value" contenteditable="true">R$ 7.500</span>
+                </div>
+              </li>
+            </ul>
+            <div class="deal-col-total" data-key="deal-col-3-total" contenteditable="true">Total: R$ 265.700,00</div>
+          </div>
+
+          <div class="card actions-col deal-col">
+            <div class="card-texture"></div>
+            <h3 data-key="deal-col-4-title" contenteditable="true">Negócio Provável (3)</h3>
+            <ul>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-8-tag" contenteditable="true">[TESOURA DE OURO]</span><span class="deal-desc" data-key="deal-8-desc" contenteditable="true">Mkt 360</span></span>
+                  <span class="deal-value" data-key="deal-8-value" contenteditable="true">R$ 114.593,74</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-9-tag" contenteditable="true">[VOALÁ]</span><span class="deal-desc" data-key="deal-9-desc" contenteditable="true">Renovação de Contrato</span></span>
+                  <span class="deal-value" data-key="deal-9-value" contenteditable="true">R$ 0</span>
+                </div>
+              </li>
+              <li>
+                <div class="deal-row-top">
+                  <span class="deal-name"><span class="deal-tag" data-key="deal-10-tag" contenteditable="true">[BANCORBRÁS]</span><span class="deal-desc" data-key="deal-10-desc" contenteditable="true">Renovação de Contrato</span></span>
+                  <span class="deal-value" data-key="deal-10-value" contenteditable="true">R$ 0</span>
+                </div>
+              </li>
+            </ul>
+            <div class="deal-col-total" data-key="deal-col-4-total" contenteditable="true">Total: R$ 114.593,74</div>
+          </div>
     </div>
   </section>
 
-  <!-- Meta Ads + Nutrição -->
-  <section class="section-block">
-    <div class="grid grid-2">
-      <div>
-        <div class="section-title">Meta Ads</div>
-        <div class="card stat-grid">
-          <div class="card-texture"></div>
-          <div class="stat">
-            <div class="stat-label">Leads gerados</div>
-            <div class="stat-value" data-key="meta-leads" contenteditable="true">142</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">CPL</div>
-            <div class="stat-value" data-key="meta-cpl" contenteditable="true">R$ 24</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Investimento</div>
-            <div class="stat-value" data-key="meta-invest" contenteditable="true">R$ 3.408</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Qualificados</div>
-            <div class="stat-value" data-key="meta-qualif" contenteditable="true">38%</div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="section-title">Nutrição · RD Station</div>
-        <div class="card stat-grid">
-          <div class="card-texture"></div>
-          <div class="stat">
-            <div class="stat-label">Taxa de abertura</div>
-            <div class="stat-value" data-key="nut-abertura" contenteditable="true">18%</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Taxa de clique</div>
-            <div class="stat-value" data-key="nut-clique" contenteditable="true">4%</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">E-mails agendados</div>
-            <div class="stat-value" data-key="nut-agendados" contenteditable="true">4</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Automações ativas</div>
-            <div class="stat-value" data-key="nut-automacoes" contenteditable="true">2</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Próximas ações -->
   <section class="section-block" style="margin-bottom:16px;">
-    <div>
-      <div class="section-title">Próximas ações</div>
-      <div class="grid grid-4">
-        <div class="card actions-col">
-          <div class="card-texture"></div>
-          <h3>Em execução</h3>
-          <ul>
-            <li data-key="act-exec-1" contenteditable="true">Envio da cadência semanal (Email 1–5) para 25 leads</li>
-            <li data-key="act-exec-2" contenteditable="true">Follow-up com Hospital Santa Marta (proposta enviada)</li>
-            <li data-key="act-exec-3" contenteditable="true">Ajuste de segmentação nas campanhas de Meta Ads</li>
-          </ul>
-        </div>
-        <div class="card actions-col">
-          <div class="card-texture"></div>
-          <h3>Esta semana</h3>
-          <ul>
-            <li data-key="act-week-1" contenteditable="true">Reunião de briefing com Tesoura de Ouro</li>
-            <li data-key="act-week-2" contenteditable="true">Envio de proposta comercial para MoveEdu</li>
-            <li data-key="act-week-3" contenteditable="true">Disparo da nutrição RD Station (4 e-mails agendados)</li>
-          </ul>
-        </div>
-        <div class="card actions-col">
-          <div class="card-texture"></div>
-          <h3>Próximos passos</h3>
-          <ul>
-            <li data-key="act-next-1" contenteditable="true">Follow-up final com Voalá e Bancorbrás</li>
-            <li data-key="act-next-2" contenteditable="true">Planejamento da cadência do próximo ciclo</li>
-            <li data-key="act-next-3" contenteditable="true">Revisão das metas comerciais do mês</li>
-          </ul>
-        </div>
-        <div class="card actions-col">
-          <div class="card-texture"></div>
-          <h3>Pendente</h3>
-          <ul>
-            <li>
-              <div class="action-line">
-                <span data-key="act-pend-1" contenteditable="true">Definir nova LP para próxima campanha de mídia</span>
-                <span class="tag-chip">Mídia</span>
-              </div>
-            </li>
-            <li>
-              <div class="action-line">
-                <span data-key="act-pend-2" contenteditable="true">Onboarding Débs no fluxo de cadência com Claude</span>
-                <span class="tag-chip">Operacional</span>
-              </div>
-            </li>
-            <li>
-              <div class="action-line">
-                <span data-key="act-pend-3" contenteditable="true">Estruturar planilha de DRE com acesso diário</span>
-                <span class="tag-chip">Financeiro</span>
-              </div>
-            </li>
-          </ul>
-        </div>
+    <div class="section-title">Próximas ações</div>
+    <div class="card actions-panel">
+      <div class="card-texture"></div>
+      <div class="actions-panel-col">
+        <h3>Esta semana</h3>
+        <ul>
+          <li data-key="act-week-1" contenteditable="true">Reunião de briefing com Tesoura de Ouro</li>
+          <li data-key="act-week-2" contenteditable="true">Envio de proposta comercial para MoveEdu</li>
+          <li data-key="act-week-3" contenteditable="true">Disparo da nutrição RD Station (4 e-mails agendados)</li>
+          <li data-key="act-exec-1" contenteditable="true">Envio da cadência semanal (Email 1–5) para 25 leads</li>
+          <li data-key="act-exec-2" contenteditable="true">Follow-up com Hospital Santa Marta (proposta enviada)</li>
+          <li data-key="act-exec-3" contenteditable="true">Ajuste de segmentação nas campanhas de Meta Ads</li>
+        </ul>
+      </div>
+      <div class="actions-panel-col">
+        <h3>Próximos passos</h3>
+        <ul>
+          <li data-key="act-next-1" contenteditable="true">Follow-up final com Voalá e Bancorbrás</li>
+          <li data-key="act-next-2" contenteditable="true">Planejamento da cadência do próximo ciclo</li>
+          <li data-key="act-next-3" contenteditable="true">Revisão das metas comerciais do mês</li>
+        </ul>
+      </div>
+      <div class="actions-panel-col">
+        <h3>Pendente</h3>
+        <ul>
+          <li>
+            <div class="action-line">
+              <span data-key="act-pend-1" contenteditable="true">Definir nova LP para próxima campanha de mídia</span>
+              <span class="tag-chip">Mídia</span>
+            </div>
+          </li>
+          <li>
+            <div class="action-line">
+              <span data-key="act-pend-2" contenteditable="true">Onboarding Débs no fluxo de cadência com Claude</span>
+              <span class="tag-chip">Operacional</span>
+            </div>
+          </li>
+          <li>
+            <div class="action-line">
+              <span data-key="act-pend-3" contenteditable="true">Estruturar planilha de DRE com acesso diário</span>
+              <span class="tag-chip">Financeiro</span>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <footer>Gruv · Overview Comercial</footer>
+  <footer>Gruv • Overview Comercial | STEFANE RIZZI</footer>
 
 </div>
 
@@ -956,7 +1210,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  var weekOffset = 0;
+  var weekOffset = -1; // dashboard is published on Monday reporting the week that just ended
 
   function getMonday(date){
     // Normalize to a local-midnight date with no time component, then walk
@@ -996,8 +1250,8 @@ document.addEventListener('DOMContentLoaded', function(){
       try{ stored = localStorage.getItem(storageKey(weekKey, fieldKey)); }catch(e){}
       el.textContent = (stored !== null) ? stored : DEFAULTS[fieldKey];
     });
-    updateBars('cadencia');
-    updateBars('funil');
+    updateBars('conversas');
+    updateBars('leads-canal');
   }
 
   function updateBars(group){
