@@ -520,7 +520,7 @@
     white-space:nowrap;
   }
   .stat-value{
-    font-size:26px;
+    font-size:22px;
     letter-spacing:-0.02em;
     font-variant-numeric:tabular-nums;
     white-space:nowrap;
@@ -545,6 +545,8 @@
     font-weight:400;
     padding:14px 20px 16px;
     border-top:var(--border);
+    white-space:pre-line;
+    line-height:1.6;
   }
   .stat-grid-note[contenteditable="true"]{
     box-shadow:none;
@@ -922,26 +924,27 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="card-glass"></div>
       <div class="kpi-label">Leads contatados</div>
       <div class="kpi-source" data-key="kpi-leads-source" contenteditable="true">Prospecção Claude</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-leads" contenteditable="true">37</span></div>
-      <div class="kpi-note" data-key="kpi-resposta-note" contenteditable="true">Taxa de resposta: 8,11%</div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-leads" contenteditable="true">0</span></div>
+      <div class="kpi-note" data-key="kpi-resposta-note" contenteditable="true">Taxa de resposta: 0%</div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
       <div class="kpi-label">Contatos</div>
       <div class="kpi-source" data-key="kpi-contatos-source" contenteditable="true">RD Conversas</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-contatos" contenteditable="true">3</span></div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-contatos" contenteditable="true">1</span></div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
       <div class="kpi-label">E-mails enviados</div>
       <div class="kpi-source" data-key="kpi-emails-source" contenteditable="true">RD Station Marketing</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-emails" contenteditable="true">1</span></div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-emails" contenteditable="true">4</span></div>
+      <div class="kpi-note" data-key="kpi-emails-note" contenteditable="true">Mensal</div>
     </div>
     <div class="card kpi">
       <div class="card-glass"></div>
       <div class="kpi-label">Negociações ativas</div>
       <div class="kpi-source" data-key="kpi-negociacoes-source" contenteditable="true">RD CRM</div>
-      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-negociacoes" contenteditable="true">10</span></div>
+      <div class="kpi-value-row"><span class="kpi-value" data-key="kpi-negociacoes" contenteditable="true">4</span></div>
     </div>
   </section>
 
@@ -981,14 +984,14 @@ document.addEventListener('DOMContentLoaded', function(){
           <div class="bar-row" data-group="leads-canal">
             <div class="bar-label">Gmail</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="leads-gmail" contenteditable="true">12</div>
+            <div class="bar-value" data-key="leads-gmail" contenteditable="true">0</div>
           </div>
           <div class="bar-row" data-group="leads-canal">
             <div class="bar-label">LinkedIn</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="leads-linkedin" contenteditable="true">25</div>
+            <div class="bar-value" data-key="leads-linkedin" contenteditable="true">0</div>
           </div>
-          <div class="panel-note" data-key="leads-resumo-note" contenteditable="true">Total de contatados: 37 • Taxa de resposta: 8,11% (3)</div>
+          <div class="panel-note" data-key="leads-resumo-note" contenteditable="true">Total de contatados: 0 • Taxa de resposta: 0% (0)</div>
         </div>
       </div>
     </div>
@@ -1004,19 +1007,19 @@ document.addEventListener('DOMContentLoaded', function(){
           <div class="bar-row" data-group="conversas">
             <div class="bar-label">Ativos</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="conv-ativo" contenteditable="true">2</div>
+            <div class="bar-value" data-key="conv-ativo" contenteditable="true">0</div>
           </div>
           <div class="bar-row" data-group="conversas">
             <div class="bar-label">Em espera</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="conv-espera" contenteditable="true">1</div>
+            <div class="bar-value" data-key="conv-espera" contenteditable="true">0</div>
           </div>
           <div class="bar-row" data-group="conversas">
             <div class="bar-label">Resolvidos</div>
             <div class="bar-track"><div class="bar-fill"></div></div>
-            <div class="bar-value" data-key="conv-resolvido" contenteditable="true">0</div>
+            <div class="bar-value" data-key="conv-resolvido" contenteditable="true">1</div>
           </div>
-          <div class="panel-note" data-key="conv-nota" contenteditable="true">Nuala Cosméticos (Site / Gruv Mkt) • Ana (Instagram / Naice) • Rafa (Instagram / -)</div>
+          <div class="panel-note" data-key="conv-nota" contenteditable="true">Felipe da Trope-se (Site / Experience - stand YOUPIX Summit)</div>
         </div>
       </div>
 
@@ -1027,26 +1030,29 @@ document.addEventListener('DOMContentLoaded', function(){
           <div class="stat-row">
             <div class="stat">
               <div class="stat-label">Selecionados</div>
-              <div class="stat-value" data-key="camp-enviados-pct" contenteditable="true">99,89%</div>
-              <div class="stat-subvalue" data-key="camp-enviados-abs" contenteditable="true">888</div>
+              <div class="stat-value" data-key="camp-enviados-pct" contenteditable="true">100%</div>
+              <div class="stat-subvalue" data-key="camp-enviados-abs" contenteditable="true">3.456</div>
             </div>
             <div class="stat">
               <div class="stat-label">Entregues</div>
-              <div class="stat-value" data-key="camp-entregues-pct" contenteditable="true">92,91%</div>
-              <div class="stat-subvalue" data-key="camp-entregues-abs" contenteditable="true">825</div>
+              <div class="stat-value" data-key="camp-entregues-pct" contenteditable="true">93,58%</div>
+              <div class="stat-subvalue" data-key="camp-entregues-abs" contenteditable="true">3.234</div>
             </div>
             <div class="stat">
               <div class="stat-label">Tx. Abertura</div>
-              <div class="stat-value" data-key="camp-abertura-pct" contenteditable="true">25,82%</div>
-              <div class="stat-subvalue" data-key="camp-abertura-abs" contenteditable="true">213</div>
+              <div class="stat-value" data-key="camp-abertura-pct" contenteditable="true">29,13%</div>
+              <div class="stat-subvalue" data-key="camp-abertura-abs" contenteditable="true">942</div>
             </div>
             <div class="stat">
               <div class="stat-label">Tx. Cliques únicos</div>
-              <div class="stat-value" data-key="camp-cliques-pct" contenteditable="true">0,24%</div>
-              <div class="stat-subvalue" data-key="camp-cliques-abs" contenteditable="true">2</div>
+              <div class="stat-value" data-key="camp-cliques-pct" contenteditable="true">0,19%</div>
+              <div class="stat-subvalue" data-key="camp-cliques-abs" contenteditable="true">6</div>
             </div>
           </div>
-          <div class="stat-grid-note" data-key="camp-info-note" contenteditable="true">E-mail 2 • Base: Geral • Envio: 13/08 • Assunto: Gere até 3x mais resultado no Q4! 🔥</div>
+          <div class="stat-grid-note" data-key="camp-info-note" contenteditable="true">E-mail 1 • Base: Geral • Envio: 05/08 • Assunto: Recorde de vendas. O que sua marca aprende?
+E-mail 2 • Base: Geral • Envio: 13/08 • Assunto: Gere até 3x mais resultado no Q4!
+E-mail 3 • Base: Geral • Envio: 20/08 • Assunto: Lançamos algo que sua marca vai precisar
+E-mail 4 • Base: Geral • Envio: 26/08 • Assunto: Toda marca chega ao limite. E agora, [Nome]?</div>
         </div>
       </div>
     </div>
@@ -1055,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', function(){
   <!-- Negociações em destaque -->
   <section class="section-block">
     <div class="section-title">Negociações ativas <span class="title-dot">·</span> RD CRM</div>
-    <div class="grid grid-4">
+    <div class="grid grid-5">
           <div class="card actions-col deal-col">
             <div class="card-texture"></div>
             <h3 data-key="deal-col-1-title" contenteditable="true">Conexão (1)</h3>
@@ -1072,59 +1078,21 @@ document.addEventListener('DOMContentLoaded', function(){
 
           <div class="card actions-col deal-col">
             <div class="card-texture"></div>
-            <h3 data-key="deal-col-2-title" contenteditable="true">DBA-Briefing (1)</h3>
-            <ul>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-1-tag" contenteditable="true">[SCFEST]</span><span class="deal-desc" data-key="deal-1-desc" contenteditable="true">Redes sociais e mídia</span></span>
-                  <span class="deal-value" data-key="deal-1-value" contenteditable="true">R$ 0</span>
-                </div>
-              </li>
-            </ul>
+            <h3 data-key="deal-col-2-title" contenteditable="true">DBA-Briefing (0)</h3>
+            <div class="deal-empty-note" data-key="deal-col-2-empty" contenteditable="true">Nenhuma negociação nesta etapa</div>
             <div class="deal-col-total" data-key="deal-col-2-total" contenteditable="true">Total: R$ 0</div>
           </div>
 
           <div class="card actions-col deal-col">
             <div class="card-texture"></div>
-            <h3 data-key="deal-col-3-title" contenteditable="true">DBS-Proposta (5)</h3>
-            <ul>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-3-tag" contenteditable="true">[PISOTEC]</span><span class="deal-desc" data-key="deal-3-desc" contenteditable="true">Conteúdo, Inbound & Mídia</span></span>
-                  <span class="deal-value" data-key="deal-3-value" contenteditable="true">R$ 114.593,74</span>
-                </div>
-              </li>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-4-tag" contenteditable="true">[CLÍNICA WELLNESS]</span><span class="deal-desc" data-key="deal-4-desc" contenteditable="true">Redes sociais e creators</span></span>
-                  <span class="deal-value" data-key="deal-4-value" contenteditable="true">R$ 117.840,00</span>
-                </div>
-              </li>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-5-tag" contenteditable="true">[HOSP. SANTA MARTA]</span><span class="deal-desc" data-key="deal-5-desc" contenteditable="true">Mídia on e off</span></span>
-                  <span class="deal-value" data-key="deal-5-value" contenteditable="true">R$ 223.200,00</span>
-                </div>
-              </li>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-6-tag" contenteditable="true">[SERGINHO]</span><span class="deal-desc" data-key="deal-6-desc" contenteditable="true">Criação de Estratégia de Mkt</span></span>
-                  <span class="deal-value" data-key="deal-6-value" contenteditable="true">R$ 35.000</span>
-                </div>
-              </li>
-              <li>
-                <div class="deal-row-top">
-                  <span class="deal-name"><span class="deal-tag" data-key="deal-7-tag" contenteditable="true">[SERGINHO]</span><span class="deal-desc" data-key="deal-7-desc" contenteditable="true">Naming</span></span>
-                  <span class="deal-value" data-key="deal-7-value" contenteditable="true">R$ 7.500</span>
-                </div>
-              </li>
-            </ul>
-            <div class="deal-col-total" data-key="deal-col-3-total" contenteditable="true">Total: R$ 498.133,74</div>
+            <h3 data-key="deal-col-3-title" contenteditable="true">DBS-Proposta (0)</h3>
+            <div class="deal-empty-note" data-key="deal-col-3-empty" contenteditable="true">Nenhuma negociação nesta etapa</div>
+            <div class="deal-col-total" data-key="deal-col-3-total" contenteditable="true">Total: R$ 0</div>
           </div>
 
           <div class="card actions-col deal-col">
             <div class="card-texture"></div>
-            <h3 data-key="deal-col-4-title" contenteditable="true">Negócio Provável (3)</h3>
+            <h3 data-key="deal-col-4-title" contenteditable="true">Negócio Provável (1)</h3>
             <ul>
               <li>
                 <div class="deal-row-top">
@@ -1132,6 +1100,14 @@ document.addEventListener('DOMContentLoaded', function(){
                   <span class="deal-value" data-key="deal-8-value" contenteditable="true">R$ 114.593,74</span>
                 </div>
               </li>
+            </ul>
+            <div class="deal-col-total" data-key="deal-col-4-total" contenteditable="true">Total: R$ 114.593,74</div>
+          </div>
+
+          <div class="card actions-col deal-col">
+            <div class="card-texture"></div>
+            <h3 data-key="deal-col-5-title" contenteditable="true">Ass. de Contrato (2)</h3>
+            <ul>
               <li>
                 <div class="deal-row-top">
                   <span class="deal-name"><span class="deal-tag" data-key="deal-9-tag" contenteditable="true">[VOALÁ]</span><span class="deal-desc" data-key="deal-9-desc" contenteditable="true">Renovação de Contrato</span></span>
@@ -1145,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
               </li>
             </ul>
-            <div class="deal-col-total" data-key="deal-col-4-total" contenteditable="true">Total: R$ 114.593,74</div>
+            <div class="deal-col-total" data-key="deal-col-5-total" contenteditable="true">Total: R$ 0</div>
           </div>
     </div>
   </section>
@@ -1168,9 +1144,11 @@ document.addEventListener('DOMContentLoaded', function(){
             </div>
             <div class="stat">
               <div class="stat-label">Alcançado</div>
-              <div class="stat-value" data-key="meta-fin-alcancado" contenteditable="true">–</div>
+              <div class="stat-value" data-key="meta-fin-alcancado" contenteditable="true">R$ 52.860,00</div>
+              <div class="stat-subvalue" data-key="meta-fin-alcancado-pct" contenteditable="true">26,86% da meta</div>
             </div>
           </div>
+          <div class="stat-grid-note" data-key="meta-fin-nota" contenteditable="true">*Não estão sendo contabilizados os valores referentes ao Conjunto Nacional e à Drogaria Rosário</div>
         </div>
       </div>
 
@@ -1185,14 +1163,16 @@ document.addEventListener('DOMContentLoaded', function(){
             </div>
             <div class="stat">
               <div class="stat-label">Alcançado</div>
-              <div class="stat-value" data-key="meta-com-alcancado" contenteditable="true">–</div>
+              <div class="stat-value" data-key="meta-com-alcancado" contenteditable="true">6</div>
+              <div class="stat-subvalue" data-key="meta-com-alcancado-pct" contenteditable="true">40% da meta</div>
             </div>
             <div class="stat">
               <div class="stat-label">Convertidos</div>
-              <div class="stat-value" data-key="meta-com-convertidos" contenteditable="true">–</div>
+              <div class="stat-value" data-key="meta-com-convertidos" contenteditable="true">0</div>
             </div>
           </div>
           <div class="stat-grid-note" data-key="meta-com-conversao-note" contenteditable="true">Meta de taxa de conversão: 20% • Taxa de conversão 1º tri 2026: 16,67%</div>
+          <div class="stat-grid-note" data-key="meta-com-contas-note" contenteditable="true">Contas: Assafest • Clínica Wellness • Grupo Tesoura de Ouro • Hospital Santa Marta • Pisotec • SC Fest</div>
         </div>
       </div>
     </div>
@@ -1207,41 +1187,43 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="actions-panel-col">
         <h3>Atualizações</h3>
         <ul>
-          <li data-key="act-update-2" contenteditable="true">Novo número comercial da Ste ativado</li>
-          <li data-key="act-update-3" contenteditable="true">Proposta comercial para a Clínica Wellness em andamento, em parceria com a Brend</li>
-          <li data-key="act-update-4" contenteditable="true">SC Fest avançou para a etapa de briefing</li>
-          <li data-key="act-update-5" contenteditable="true">Follow-up Tesoura de Ouro e Hospital Santa Marta</li>
-          <li data-key="act-update-6" contenteditable="true">Envio da proposta comercial para a Pisotec</li>
-          <li data-key="act-update-7" contenteditable="true">Disparo dos e-mails 1 e 2 da nutrição RD Station</li>
+          <li data-key="act-update-1" contenteditable="true">Nova apresentação comercial 100% concluída.</li>
+          <li data-key="act-update-2" contenteditable="true">Disparo do último e-mail da nutrição do RD Station de agosto, realizado em 26/08.</li>
+          <li data-key="act-update-3" contenteditable="true">Encerramento dos follow-ups com Pisotec e Hospital Santa Marta, devido à ausência de retorno.</li>
+          <li data-key="act-update-4" contenteditable="true">Follow-up realizado com a Evenpar, referente ao projeto Assafest. O contato avançou e foi encaminhado ao Vini.</li>
+          <li data-key="act-update-5" contenteditable="true">Propostas para Clínica Wellness e SC Fest não avançaram por estarem acima do orçamento.</li>
+          <li data-key="act-update-6" contenteditable="true">Contato com Serginho encerrado, pois o lead optou por realizar o serviço com outro parceiro.</li>
         </ul>
       </div>
       <div class="actions-panel-col">
         <h3>Esta semana</h3>
         <ul>
-          <li data-key="act-week-1" contenteditable="true">Ajustes finais nova apresentação comercial</li>
-          <li data-key="act-exec-1" contenteditable="true">Disparo do e-mail 3 da nutrição RD Station</li>
-          <li data-key="act-exec-2" contenteditable="true">Nova estratégia cadência semanal leads Claude</li>
-          <li data-key="act-exec-3" contenteditable="true">Configuração e ativação da nova campanha de mídia</li>
-          <li data-key="act-exec-4" contenteditable="true">Nova rodada de follow-up para negociações em andamento</li>
+          <li data-key="act-week-1" contenteditable="true">Disparo do 1º e-mail de setembro da nutrição do RD Station.</li>
+          <li data-key="act-week-2" contenteditable="true">Nova estratégia de cadência semanal de leads via Claude.</li>
+          <li data-key="act-week-3" contenteditable="true">Rodada de follow-up com os contatos que clicaram nos links dos nossos e-mails.</li>
+          <li data-key="act-week-4" contenteditable="true">Revisão do layout dos cases que estão em ajuste.</li>
+          <li data-key="act-week-5" contenteditable="true">Início da estratégia com os leads da Comu.</li>
+          <li data-key="act-week-7" contenteditable="true">Realizar novo follow-up com Tesoura de Ouro.</li>
+          <li data-key="act-week-8" contenteditable="true">Análise de receitas e despesas da Gruv Marketing para estratégias de contenção de impacto após a saída do Conjunto Nacional.</li>
         </ul>
       </div>
       <div class="actions-panel-col">
         <h3>Próximos passos</h3>
         <ul>
-          <li data-key="act-next-2" contenteditable="true">Reestruturação da calculadora comercial</li>
-          <li data-key="act-next-3" contenteditable="true">Estruturação do dashboard de DRE</li>
+          <li data-key="act-next-1" contenteditable="true">Reestruturação da calculadora comercial.</li>
+          <li data-key="act-next-2" contenteditable="true">Estruturação do dashboard de DRE.</li>
         </ul>
       </div>
       <div class="actions-panel-col">
         <h3>Pendentes</h3>
         <ul>
-          <li data-key="act-pend-1" contenteditable="true">Assinatura de contrato — Bancorbrás e Voalá</li>
+          <li data-key="act-pend-1" contenteditable="true">Assinatura de contrato: Bancorbrás e Voalá.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <footer>Gruv • Overview Comercial 2026 | STEFANE RIZZI</footer>
+  <footer>Gruv • Overview Comercial 2026</footer>
 
 </div>
 
